@@ -95,16 +95,16 @@ In case you need to destroy, create and populate the database:
 2. Delete the database:
 ```bash
 # For Windows
-$ docker-compose -f bootstrap\docker-compose.yml down -v
+$ docker-compose -f bootstrap\docker-compose.yaml down -v
 # For Unix
-$ docker-compose -f bootstrap/docker-compose.yml down -v
+$ docker-compose -f bootstrap/docker-compose.yaml down -v
 ```
 3. Create the database:
 ```bash
 # For Windows
-$ docker-compose -f bootstrap\docker-compose.yml up -d
+$ docker-compose -f bootstrap\docker-compose.yaml up -d
 # For Unix
-$ docker-compose -f bootstrap/docker-compose.yml up -d
+$ docker-compose -f bootstrap/docker-compose.yaml up -d
 ```
 4. Execute the database migration:
 ```bash

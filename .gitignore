@@ -1,0 +1,12 @@
+.env
+*.pyc
+*.DS_Store
+venv/
+.idea
+./__pycache__/
+alembic/versions/*.py
+# ignore json and logs in folder tests
+tests/login/*.json
+*.log
+# ignore the report.html
+report.html
