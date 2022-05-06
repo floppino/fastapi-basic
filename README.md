@@ -135,7 +135,7 @@ Git will reformat and lint your code before every commit.
 **Linter**: flake8
 ___
 
-## [WIP] Run unit tests
+## WIP - Run unit tests
 
 Execute the following command to run the test suite:
 
