@@ -1,0 +1,14 @@
+alembic
+black
+colorama
+fastapi
+fastapi_sqlalchemy
+flake8
+passlib[bcrypt]
+psycopg2-binary
+pydantic
+pytest
+pytest-html
+pyyaml
+sqlalchemy
+uvicorn[standard]
