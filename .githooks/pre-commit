@@ -1,0 +1,6 @@
+#!/bin/sh
+black wfm_app
+black tests
+flake8 --verbose --max-line-length 120  \
+--exclude .git,__pycache__,docs/source/conf.py,old,build,dist,venv,alembic \
+--per-file-ignores="__init__.py:F401" .
