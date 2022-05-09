@@ -63,3 +63,29 @@ async def rat_by_id(rat_id: int):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     return rat
+
+
+# Add a rat
+@router.post("/add_rat", status_code=status.HTTP_200_OK, response_model=RatSchemaOut)
+async def add_rat(rat: RatSchemaIn):
+
+    try:
+        db_rat = Rat(**dict(rat))
+        db.session.add(db_rat)
+        db.session.commit()
+        db.session.refresh(db_rat)
+
+    except SQLAlchemyError:
+        print("Error retrieving data")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    return rat
+
+
+# Delete a rat
+@router.delete("/{rat_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_rat(rat_id: int):
+    rat_to_delete = db.session.query(Rat).filter(Rat.rat_id == rat_id).one()
+    db.session.delete(rat_to_delete)
+    db.session.commit()
+    return
