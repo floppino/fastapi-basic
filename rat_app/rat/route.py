@@ -1,5 +1,4 @@
 from typing import List
-
 from fastapi import APIRouter, HTTPException, status, Security
 from fastapi.responses import Response
 from fastapi_sqlalchemy import db
