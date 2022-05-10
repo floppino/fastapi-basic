@@ -79,7 +79,7 @@ async def add_rat(rat: RatSchemaIn):
         print("Error retrieving data")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    return rat
+    return db_rat
 
 
 # Delete a rat
