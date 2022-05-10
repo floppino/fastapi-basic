@@ -107,7 +107,7 @@ async def update_rat(rat_id: int, rat: RatUpdateSchema):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Wrong information")
 
     except SQLAlchemyError:
-        logger.error(f"Error: \n\n{SQLAlchemyError}")
+        print(f"Error: \n\n{SQLAlchemyError}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     return rat
