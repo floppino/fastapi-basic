@@ -57,6 +57,7 @@ async def rat_by_id(rat_id: int):
     except NoResultFound:
         print(f"Rat with id: {rat_id} not found ")
         raise HTTPException(status_code=404, detail="Asset not found")
+    
     except SQLAlchemyError:
         print("Error retrieving data")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -84,9 +85,19 @@ async def add_rat(rat: RatSchemaIn):
 # Delete a rat
 @router.delete("/{rat_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_rat(rat_id: int):
-    rat_to_delete = db.session.query(Rat).filter(Rat.rat_id == rat_id).one()
-    db.session.delete(rat_to_delete)
-    db.session.commit()
+
+    try:
+        rat_to_delete = db.session.query(Rat).filter(Rat.rat_id == rat_id).one()
+        db.session.delete(rat_to_delete)
+        db.session.commit()
+
+    except NoResultFound:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Rat is not present")
+
+    except SQLAlchemyError:
+        print(f"Error: \n\n{SQLAlchemyError}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     return
 
 

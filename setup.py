@@ -13,8 +13,8 @@ from rat_app.config import logger
 from sqlalchemy.orm import sessionmaker
 
 # Classes import
-from rat_app.rat.model import Rat
 from rat_app.owner.model import Owner
+from rat_app.rat.model import Rat
 """
 ########################################################################################################################
                                               Config
@@ -82,21 +82,21 @@ with open(f"./bootstrap/data/{environment}.yaml") as file:
         """
         try:
             # Resource
-            for item in rat:
-                rat_objet = Rat(**item)
-                session.add(rat_objet)
-            session.commit()
-        except Exception as e:
-            error_list.append(f"Rat: \n{e}")
-
-        try:
-            # Resource
             for item in owner:
                 owner_object = Owner(**item)
                 session.add(owner_object)
             session.commit()
         except Exception as e:
             error_list.append(f"Owner: \n{e}")
+
+        try:
+            # Resource
+            for item in rat:
+                rat_objet = Rat(**item)
+                session.add(rat_objet)
+            session.commit()
+        except Exception as e:
+            error_list.append(f"Rat: \n{e}")
 
     except Exception as e:
         error_list.append(f"Generic exception: \n{e}")

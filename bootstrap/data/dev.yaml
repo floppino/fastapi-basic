@@ -1,8 +1,8 @@
 rat:
   - rat_name: "Yoshi"
-    rat_owner_name: "Martina"
+    owner_id: 1
   - rat_name: "Luci"
-    rat_owner_name: "Martina"
+    owner_id: 1
 
 owner:
   - owner_name: "Veronica"

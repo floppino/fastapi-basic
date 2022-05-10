@@ -16,8 +16,8 @@ sys.path.append(BASE_DIR)
 
 
 # Models import
-from rat_app.rat import model as rat_model
 from rat_app.owner import model as owner_model
+from rat_app.rat import model as rat_model
 
 # This is the Alembic Config object, which provides access to the values within the .env file in use.
 config = context.config
