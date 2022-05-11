@@ -1,11 +1,22 @@
 rat:
   - rat_name: "Yoshi"
     owner_id: 1
+    cage_id: 1
   - rat_name: "Luci"
     owner_id: 1
+    cage_id: 1
 
 owner:
   - owner_name: "Veronica"
     owner_email: "veronicalillocci@gmail.com"
   - owner_name: "Giulia"
     owner_email: "giulia@gmail.com"
+
+cage:
+  - model: "Savic Zeno"
+  - price: 99.99
+  - bar_space: 1.2
+  - height: 163
+  - depth: 63
+  - width: 95
+
