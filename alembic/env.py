@@ -17,6 +17,7 @@ sys.path.append(BASE_DIR)
 
 # Models import
 from rat_app.owner import model as owner_model
+from rat_app.cage import model as cage_model
 from rat_app.rat import model as rat_model
 
 # This is the Alembic Config object, which provides access to the values within the .env file in use.
@@ -28,7 +29,7 @@ config.set_main_option("sqlalchemy.url", os.environ["DATABASE_URL"])
 # Interpret the config file for Python logging.This line sets up loggers basically.
 fileConfig(config.config_file_name)
 
-target_metadata = [owner_model.Base.metadata, rat_model.Base.metadata]
+target_metadata = [owner_model.Base.metadata, cage_model.Base.metadata, rat_model.Base.metadata]
 
 
 def run_migrations_offline():

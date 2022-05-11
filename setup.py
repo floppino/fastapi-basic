@@ -14,6 +14,7 @@ from sqlalchemy.orm import sessionmaker
 
 # Classes import
 from rat_app.owner.model import Owner
+from rat_app.cage.model import Cage
 from rat_app.rat.model import Rat
 """
 ########################################################################################################################
@@ -76,6 +77,7 @@ with open(f"./bootstrap/data/{environment}.yaml") as file:
 
         rat = conf["rat"]
         owner = conf["owner"]
+        cage = conf["cage"]
 
         """
         It populates the database
@@ -88,6 +90,15 @@ with open(f"./bootstrap/data/{environment}.yaml") as file:
             session.commit()
         except Exception as e:
             error_list.append(f"Owner: \n{e}")
+
+        try:
+            # Resource
+            for item in cage:
+                cage_object = Cage(**item)
+                session.add(cage_object)
+            session.commit()
+        except Exception as e:
+            error_list.append(f"Cage: \n{e}")
 
         try:
             # Resource
