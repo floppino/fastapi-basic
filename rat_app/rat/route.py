@@ -32,7 +32,7 @@ router = APIRouter()
 
 
 # Get every rat
-@router.get("", status_code=status.HTTP_200_OK, response_model=List[RatSchemaIn])
+@router.get("", status_code=status.HTTP_200_OK, response_model=List[RatSchemaOut])
 async def all_rats():
     """Return every rat"""
     try:
@@ -66,7 +66,7 @@ async def rat_by_id(rat_id: int):
 
 
 # Add a rat
-@router.post("/add_rat", status_code=status.HTTP_200_OK, response_model=RatSchemaOut)
+@router.post("", status_code=status.HTTP_201_CREATED, response_model=RatSchemaOut)
 async def add_rat(rat: RatSchemaIn):
 
     try:
@@ -75,6 +75,12 @@ async def add_rat(rat: RatSchemaIn):
         db.session.commit()
         db.session.refresh(db_rat)
 
+    except IntegrityError as integrity_error:
+        print(f"Rat - Integrity error - \n {integrity_error}")
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Integrity Error, Duplicated Entry",
+        )
     except SQLAlchemyError:
         print("Error retrieving data")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -1,0 +1,3 @@
+create_rat:
+  - rat_name: "Test_rat"
+    owner_id: 1
