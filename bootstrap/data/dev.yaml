@@ -14,9 +14,9 @@ owner:
 
 cage:
   - model: "Savic Zeno"
-  - price: 99.99
-  - bar_space: 1.2
-  - height: 163
-  - depth: 63
-  - width: 95
+    price: 99.99
+    bar_space: 1.2
+    height: 163
+    depth: 63
+    width: 95
 
