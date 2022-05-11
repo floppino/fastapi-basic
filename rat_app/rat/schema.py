@@ -1,4 +1,5 @@
 from pydantic import BaseModel, validator
+from typing import Optional
 
 """
 ########################################################################################################################
@@ -24,6 +25,14 @@ class RatSchemaOut(BaseModel):
     rat_id: int
     rat_name: str
     rat_owner_name: str
+
+    class Config:
+        orm_mode = True
+
+
+class RatUpdateSchema(BaseModel):
+    rat_name: Optional[str]
+    rat_owner_name: Optional[str]
 
     class Config:
         orm_mode = True

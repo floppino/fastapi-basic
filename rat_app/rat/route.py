@@ -11,7 +11,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from rat_app.rat.model import Rat
 # Schema import
 from rat_app.rat.schema import (
-    #RatUpdateSchema,
+    RatUpdateSchema,
     RatSchemaIn,
     RatSchemaOut
 )
@@ -63,3 +63,55 @@ async def rat_by_id(rat_id: int):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     return rat
+
+
+# Add a rat
+@router.post("/add_rat", status_code=status.HTTP_200_OK, response_model=RatSchemaOut)
+async def add_rat(rat: RatSchemaIn):
+
+    try:
+        db_rat = Rat(**dict(rat))
+        db.session.add(db_rat)
+        db.session.commit()
+        db.session.refresh(db_rat)
+
+    except SQLAlchemyError:
+        print("Error retrieving data")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    return rat
+
+
+# Delete a rat
+@router.delete("/{rat_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_rat(rat_id: int):
+    rat_to_delete = db.session.query(Rat).filter(Rat.rat_id == rat_id).one()
+    db.session.delete(rat_to_delete)
+    db.session.commit()
+    return
+
+
+# Update rat
+@router.put("/{rat_id}", status_code=status.HTTP_200_OK)
+async def update_rat(rat_id: int, rat: RatUpdateSchema):
+
+    try:
+        db.session.query(Rat).filter(Rat.rat_id == rat_id).one()
+        db.session.query(Rat).filter(Rat.rat_id == rat_id).update(rat)
+        db.session.commit()
+
+    except NoResultFound:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Rat is not present")
+
+    except StatementError:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Wrong information")
+
+    except SQLAlchemyError:
+        print(f"Error: \n\n{SQLAlchemyError}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    return rat
+
+
+
+
