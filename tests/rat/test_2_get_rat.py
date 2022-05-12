@@ -17,19 +17,17 @@ def test_get_rats(request):
     request.node._description = "Pass if the status code is 200"
 
     #Request
-    with open("tests/test_data.yaml", "r") as yaml_file:
-        rat_data = yaml.safe_load(yaml_file)
-        get_response = client.get("/rat")
+    get_response = client.get("/rat")
 
-        # Save response
-        request.node._effective_status_code = get_response.status_code
+    # Save response
+    request.node._effective_status_code = get_response.status_code
 
-        #Verify the result
-        request.node._expected_status_code = 200
-        assert get_response.status_code == 200
+    #Verify the result
+    request.node._expected_status_code = 200
+    assert get_response.status_code == 200
 
-        # Save the log
-        request.node._full_response = get_response.status_code
+    # Save the log
+    request.node._full_response = get_response.status_code
 
 
 
@@ -49,20 +47,18 @@ def test_get_rat(request):
     request.node._description = "Pass if the status code is 200"
 
     #Request
-    with open("tests/test_data.yaml", "r") as yaml_file:
-        rat_data = yaml.safe_load(yaml_file)
-        get_all = client.get("/rat")
-        rat_id = get_all.json()[-1]["rat_id"]
+    get_all = client.get("/rat")
+    rat_id = get_all.json()[-1]["rat_id"]
 
-        # Get a rat
-        get_response = client.get(f"/rat/{rat_id}")
+    # Get a rat
+    get_response = client.get(f"/rat/{rat_id}")
 
-        # Save response
-        request.node._effective_status_code = get_response.status_code
+    # Save response
+    request.node._effective_status_code = get_response.status_code
 
-        #Verify the result
-        request.node._expected_status_code = 200
-        assert get_response.status_code == 200
+    #Verify the result
+    request.node._expected_status_code = 200
+    assert get_response.status_code == 200
 
-        # Save the log
-        request.node._full_response = get_response.status_code
+    # Save the log
+    request.node._full_response = get_response.status_code
