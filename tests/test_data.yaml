@@ -1,3 +1,11 @@
 create_rat:
   - rat_name: "Test_rat"
     owner_id: 1
+
+create_cage:
+  - model: "Test_model"
+    price: 99.99
+    bar_space: 1.2
+    height: 160
+    depth: 60
+    width: 70

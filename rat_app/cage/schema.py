@@ -33,7 +33,7 @@ class CageSchemaOut(BaseModel):
 
 
 class CageUpdateSchema(BaseModel):
-    model: Optional[float]
+    model: Optional[str]
     price: Optional[float]
     bar_space: Optional[float]
     height: Optional[float]
