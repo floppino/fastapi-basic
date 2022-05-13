@@ -1,4 +1,4 @@
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, HttpUrl
 from typing import Optional
 
 """
@@ -8,31 +8,26 @@ from typing import Optional
 """
 
 
-class RatSchemaIn(BaseModel):
-    rat_name: str
-    owner_id: int
-
-    @validator("rat_name", pre=True)
-    def capitalize_name(cls, field: str):
-        if field is not None:
-            return field.capitalize()
-
-    class Config:
-        orm_mode = True
-
-
-class RatSchemaOut(BaseModel):
+class PhotoSchemaIn(BaseModel):
+    rat_photo: HttpUrl
     rat_id: int
-    rat_name: str
-    owner_id: int
 
     class Config:
         orm_mode = True
 
 
-class RatUpdateSchema(BaseModel):
-    rat_name: Optional[str]
-    owner_id: Optional[int]
+class PhotoSchemaOut(BaseModel):
+    photo_id: int
+    rat_photo: HttpUrl
+    rat_id: int
+
+    class Config:
+        orm_mode = True
+
+
+class PhotoUpdateSchema(BaseModel):
+    rat_photo: Optional[HttpUrl]
+    rat_id: Optional[int]
 
     class Config:
         orm_mode = True
