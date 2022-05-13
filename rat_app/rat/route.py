@@ -116,11 +116,11 @@ async def update_rat(rat_id: int, rat: RatUpdateSchema):
         db.session.query(Rat).filter(Rat.rat_id == rat_id).update(rat)
         db.session.commit()
 
-    except NoResultFound:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Rat is not present")
-
     except StatementError:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Wrong information")
+
+    except NoResultFound:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Rat is not present")
 
     except SQLAlchemyError:
         print(f"Error: \n\n{SQLAlchemyError}")

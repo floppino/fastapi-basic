@@ -2,9 +2,13 @@ create_rat:
   - rat_name: "Test_rat"
     owner_id: 1
 
-update_wrong_rat:
+update_rat_error422:
   - rat_name: "Test_rat"
     owner_id: ""
+
+update_rat_error400:
+  - rat_name: "Test_rat"
+    owner_id: -1
 
 create_cage:
   - model: "Test_model"

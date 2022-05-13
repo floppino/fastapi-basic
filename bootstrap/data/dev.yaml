@@ -20,3 +20,6 @@ cage:
     depth: 63
     width: 95
 
+photo:
+  - rat_photo: "https://images.pexels.com/photos/51340/rat-pets-eat-51340.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    rat_id: 1

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, UniqueConstraint
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -14,3 +14,4 @@ class Cage(Base):
     height = Column(Float, nullable=True)
     depth = Column(Float, nullable=True)
     width = Column(Float, nullable=True)
+    __table_args__ = (UniqueConstraint(model, price),)
