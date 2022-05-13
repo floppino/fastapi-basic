@@ -65,7 +65,7 @@ def test_get_rat(request):
 
 
 # Get a rat error 404
-def test_get_rat_notfound(request):
+def test_get_rat_error404(request):
     # Configure test info in the report
     request.node._method = "GET"
     request.node._route = "/rat"

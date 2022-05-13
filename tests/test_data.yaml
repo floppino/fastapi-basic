@@ -2,6 +2,10 @@ create_rat:
   - rat_name: "Test_rat"
     owner_id: 1
 
+update_wrong_rat:
+  - rat_name: "Test_rat"
+    owner_id: ""
+
 create_cage:
   - model: "Test_model"
     price: 99.99
