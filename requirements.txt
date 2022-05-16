@@ -22,6 +22,7 @@ python-jose==3.3.0
 coloredlogs~=15.0.1
 colorama~=0.4.4
 msal~=1.16.0
+sqlalchemy_imageattach
 
 py~=1.10.0
 pydantic~=1.8.2

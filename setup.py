@@ -16,7 +16,6 @@ from sqlalchemy.orm import sessionmaker
 from rat_app.owner.model import Owner
 from rat_app.cage.model import Cage
 from rat_app.rat.model import Rat
-from rat_app.photo.model import Photo
 """
 ########################################################################################################################
                                               Config
@@ -79,7 +78,6 @@ with open(f"./bootstrap/data/{environment}.yaml") as file:
         rat = conf["rat"]
         owner = conf["owner"]
         cage = conf["cage"]
-        photo = conf["photo"]
 
         """
         It populates the database
@@ -110,15 +108,6 @@ with open(f"./bootstrap/data/{environment}.yaml") as file:
             session.commit()
         except Exception as e:
             error_list.append(f"Rat: \n{e}")
-
-        try:
-            # Resource
-            for item in photo:
-                photo_objet = Photo(**item)
-                session.add(photo_objet)
-            session.commit()
-        except Exception as e:
-            error_list.append(f"Photo: \n{e}")
 
     except Exception as e:
         error_list.append(f"Generic exception: \n{e}")
