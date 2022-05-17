@@ -13,3 +13,5 @@ COPY ./main.py /home/main.py
 COPY .env /home/.env
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+
+#comment to trigger build
